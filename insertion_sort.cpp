@@ -1,7 +1,11 @@
 #include<iostream>
 using namespace std;
 
-void insertionsort(int arr[], int n){
+// time complexity = O(n), O(n^2), O(n^2)
+// space complexity = 1
+// stable algorithm
+
+void insertionsort(int arr[], int n) {
     for(int i=1; i<n; i++) {
         int curr = arr[i];
         int prev = i-1;

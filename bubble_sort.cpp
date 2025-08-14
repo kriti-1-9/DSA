@@ -1,6 +1,10 @@
 #include<iostream>
 using namespace std;
 
+// time complexity = O(n^2)
+// space complexity = O(1)
+// stable algorithm
+
 void bubblesort(int arr[], int n) {
     for(int i=0; i<n-1; i++) {
         bool isSwap = false;
@@ -11,10 +15,10 @@ void bubblesort(int arr[], int n) {
                 isSwap = true;
             }
         }
-        if(!isSwap){
+        if(!isSwap) {
             return;
         }
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n; i++) {
             cout << arr[i] << " ";
         }
         cout << endl;

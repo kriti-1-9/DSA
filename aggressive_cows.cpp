@@ -1,9 +1,9 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-bool isPossible(vector<int> &arr, int N, int C, int minAllowedDist){
+bool isPossible(vector<int> &arr, int N, int C, int minAllowedDist) {
     //sort in getDistance
     int cow = 1, lastStallPos = arr[0];
 
@@ -20,15 +20,15 @@ bool isPossible(vector<int> &arr, int N, int C, int minAllowedDist){
 } 
 
 int getDistance(vector<int> &arr, int N, int C) {
-    sort(arr.begin(), arr.end());
-    //st=1, end=maxValue-nimvalue;
-    int st = 1, end = arr[N-1]-arr[0], ans = -1;
-    while(st <= end){
+    sort(arr.begin(), arr.end()); // NlogN
+    //st = 1, end = maxValue - minvalue;
+    int st = 1, end = arr[N-1] - arr[0], ans = -1;
+    while(st <= end) { // O(log(range) * N)
         int mid = st + (end -st) / 2;
-        if(isPossible(arr, N, C, mid)){//right
+        if(isPossible(arr, N, C, mid)) { // right
             ans = mid;
             st = mid + 1;
-        }else{
+        } else { // left
             end = mid - 1;
         }
     } 

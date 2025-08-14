@@ -1,5 +1,9 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+
+// time complexity = O(n^2)
+// space complexity = O(1)
+// not a stable algorithm
 
 void selectionsort(int arr[], int n) {
     for(int i=0; i<n-1; i++) {
