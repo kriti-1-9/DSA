@@ -13,6 +13,7 @@ void insertionsort(int arr[], int n) {
             arr[prev+1] = arr[prev];
             prev--;
         }
+        printArray(arr, i);
         arr[prev+1] = curr;
     }
 }
@@ -26,8 +27,7 @@ void printArray(int arr[], int n) {
 
 int main() {
    int n = 5;
-   int arr[] = {4, 1, 5, 2, 3};
+   int arr[] = {56, 89, 66, 10, 32};
    insertionsort(arr, n);
-   printArray(arr, n);
    return 0;
 }

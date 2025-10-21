@@ -6,7 +6,7 @@ void merge(vector<int> &arr, int st, int mid, int end) {
     vector<int> temp;
     int i = st, j = mid+1;
     while(i <= mid && j <= end) {
-        if(arr[i] <= arr[j]) { //for descending ">="
+        if(arr[i] <= arr[j]) { // nm for descending ">="
             temp.push_back(arr[i]);
             i++;
         } else {
