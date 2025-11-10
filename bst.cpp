@@ -96,20 +96,73 @@ Node* delNode(Node* root, int key) { // key => val to delete
     }
 }
 
+Node* buildBSTFromSorted(const vector<int>& arr, int start, int end) {
+    if(start > end) {
+        return NULL;
+    }
+
+    int mid = start + (end - start) / 2;
+    Node* root = new Node(arr[mid]);
+    root->left = buildBSTFromSorted(arr, start, mid - 1);
+    root->right = buildBSTFromSorted(arr, mid + 1, end);
+
+    return root;
+}
+
+Node* merge2BST(Node* root1, Node* root2) {
+    vector<int> arr1, arr2;
+    inorder(root1, arr1);
+    inorder(root2, arr2);
+
+    vector<int> temp;
+
+    int i = 0, j = 0;
+    while(i < arr1.size() && j < arr2.size()) {
+        if(arr1[i] < arr2[j]) {
+            temp.push_back(arr1[i++]);
+        } else {
+            temp.push_back(arr2[j++]);
+        }
+    }
+
+    while(i < arr1.size()) {
+        temp.push_back(arr1[i++]);
+    }
+    while(j < arr2.size()) {
+        temp.push_back(arr2[j++]);
+    }
+
+    return buildBSTFromSorted(temp, 0, temp.size() - 1);
+}
+
 int main() {
-    vector<int> arr = {3, 2, 1, 5, 6, 4};
+    vector<int> arr1 = {8, 2, 1, 10};
+    vector<int> arr2 = {5, 3, 0};
 
-    Node* root = buildBST(arr);
+    Node* root1 = builBST(arr1);
+    Node* root2 = builBST(arr2);
 
-    cout << "before: ";
-    inorder(root);
+    Node* root = merge2BST(root1, root2);
+    vector<int> seq;
+    inorder(root, seq);
+    for(int val : seq) {
+        cout << val << " ";
+    }
     cout << endl;
+    
+    // vector<int> arr = {3, 2, 1, 5, 6, 4};
 
-    delNode(root, 6);
+    // Node* root = buildBST(arr);
 
-    cout << "after: ";
-    inorder(root);
-    cout << endl;
+    // cout << "before: ";
+    // inorder(root);
+    // cout << endl;
+
+    // delNode(root, 6);
+
+    // cout << "after: ";
+    // inorder(root);
+    // cout << endl;
 
     // cout << search(root, 5) << endl;
 
