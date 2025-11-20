@@ -10,7 +10,9 @@ Input: arr[] = [3, 1, 2]
 Output: [] 
 Explanation: There is no repeating element in the array, so the output is empty """
 
-def findDuplicates(arr):
+# [Naive Approach] Using Nested Loop - O(n2) Time and O(1) Space
+
+""" def findDuplicates(arr):
     ans = []
 
     # traverse each element in the array
@@ -37,6 +39,35 @@ def findDuplicates(arr):
         # if duplicate found, add to result
         if cnt:
             ans.append(arr[i])
+
+    return ans
+
+
+if __name__ == "__main__":
+    arr = [2, 3, 1, 2, 3]
+    res = findDuplicates(arr)
+    print(*res) """
+    
+# [Better Approach - 1] Sorting with Consecutive Comparison - O(n × log n) Time and O(1) Space
+
+def findDuplicates(arr):
+    
+    # sort the array so that duplicates are adjacent
+    arr.sort()
+
+    ans = []
+
+    # traverse the sorted array and check 
+    # for consecutive duplicates
+    for i in range(1, len(arr)):
+
+        # If current element is same as previous
+        if arr[i] == arr[i - 1]:
+
+            # avoid adding the same duplicate multiple 
+            # times
+            if not ans or ans[-1] != arr[i]:
+                ans.append(arr[i])
 
     return ans
 
