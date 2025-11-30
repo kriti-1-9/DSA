@@ -135,6 +135,39 @@ Node* merge2BST(Node* root1, Node* root2) {
     return buildBSTFromSorted(temp, 0, temp.size() - 1);
 }
 
+vector<int> getPredSucc(Node* root, int key) {
+    Node* curr = root;
+    Node* pred = NULL;
+    Node* succ = NULL;
+
+    while(curr != NULL) {
+        if(key < curr->data) {
+            succ = curr;
+            curr = curr->left;
+        } else if(key > curr->data) {
+            pred = curr;
+            curr = curr->right;
+        } else {
+            if(curr->left != NULL) {
+                Node* temp = curr->left;
+                while(temp->right) {
+                    temp = temp->right;
+                }
+                pred = temp;
+            }
+            if(curr->right != NULL) {
+                Node* temp = curr->right;
+                while(temp->left) {
+                    temp = temp->left;
+                }
+                succ = temp;
+            }
+            break;
+        }
+    }
+    return {pred ? pred->data : -1, succ ? succ->data : -1};
+}
+
 int main() {
     vector<int> arr1 = {8, 2, 1, 10};
     vector<int> arr2 = {5, 3, 0};
